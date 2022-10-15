@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     // Stats
     public int health;
     [SerializeField] private float _movmentSpeed = 1f;
-    public bool _moveToPlayer = false;
+    public bool _moveEnemy = false, _escapePlayer = false;
 
     #endregion ------------------------------------ Fields ------------------------------------
 
@@ -28,16 +28,25 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(_moveToPlayer) MoveEnemy();
+        if (_moveEnemy)
+            if (!_escapePlayer) MoveEnemyToPlayer();
+            else MoveEnemyEscapePlayer();
     }
 
     #endregion ------------------------------------ Mono ------------------------------------
 
     #region --------------------------------------- Methods ------------------------------------
 
-    public void MoveEnemy()
+    public void MoveEnemyToPlayer()
     {
         _direction = _player.position - this.transform.position;   // Enemy to player direction
+        _enemyRigidbody.MovePosition((Vector2)this.transform.position + (_direction * _movmentSpeed * Time.deltaTime));
+        SetEnemyDirection();
+    }
+
+    public void MoveEnemyEscapePlayer()
+    {
+        _direction = -(_player.position - this.transform.position);   // Enemy to player direction
         _enemyRigidbody.MovePosition((Vector2)this.transform.position + (_direction * _movmentSpeed * Time.deltaTime));
         SetEnemyDirection();
     }

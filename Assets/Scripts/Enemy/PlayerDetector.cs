@@ -3,9 +3,11 @@ using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
+
     #region --------------------------------------- Fields ------------------------------------
 
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private GameObject _enemy, _player;
+    private bool _escapingPlayer = false;
 
     #endregion ------------------------------------ Fields ------------------------------------
 
@@ -14,13 +16,19 @@ public class PlayerDetector : MonoBehaviour
     private void Awake()
     {
         _enemy = this.transform.parent.gameObject;
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((collision.gameObject.GetComponent("PlayerController") as PlayerController) != null)
         {
-            _enemy.GetComponent<Enemy>()._moveToPlayer = true;
+            _enemy.GetComponent<Enemy>()._moveEnemy = true;
+            if(!_escapingPlayer) if(_player.transform.localScale.x > _enemy.transform.localScale.x && _player.transform.localScale.y > _enemy.transform.localScale.y)
+                {
+                    _enemy.GetComponent<Enemy>()._escapePlayer = true;
+                    _escapingPlayer = true;
+                }
         }
     }
 
@@ -28,9 +36,10 @@ public class PlayerDetector : MonoBehaviour
     {
         if ((collision.gameObject.GetComponent("PlayerController") as PlayerController) != null)
         {
-            _enemy.GetComponent<Enemy>()._moveToPlayer = false;
+            _enemy.GetComponent<Enemy>()._moveEnemy = false;
         }
     }
 
     #endregion ------------------------------------ Mono ------------------------------------
+
 }

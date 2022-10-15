@@ -7,18 +7,23 @@ namespace Framework.Custom
 
         #region --------------------------------------- Fields ------------------------------------
 
-        public Transform target;
-        public Vector3 offset;
-        public float damping;   // The max distance between Camera and desired GameObject
+        [SerializeField] private Transform _player;
+        [SerializeField] private Vector3 offset;
+        [SerializeField] private float damping;   // The max distance between Camera and desired GameObject
         private Vector3 velocity = Vector3.zero;
 
         #endregion --------------------------------------- Fields ------------------------------------
 
         #region --------------------------------------- Mono ------------------------------------
 
+        private void Awake()
+        {
+            _player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
         void FixedUpdate()
         {
-            Vector3 movepos = target.position + offset;
+            Vector3 movepos = _player.position + offset;
             transform.position = Vector3.SmoothDamp(transform.position, movepos, ref velocity, damping);   // Camera follows desided GameObject
         }
 
