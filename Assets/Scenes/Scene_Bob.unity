@@ -407,7 +407,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1068518887}
   offset: {x: 0, y: 0, z: -5}
-  damping: 0.15
+  damping: 0.5
 --- !u!81 &1324556496
 AudioListener:
   m_ObjectHideFlags: 0

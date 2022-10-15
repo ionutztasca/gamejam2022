@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -13,8 +15,7 @@ public class Enemy : MonoBehaviour
     // Stats
     public int health;
     [SerializeField] private float _movmentSpeed = 1f;
-    public bool _moveEnemy = false, _escapePlayer = false;
-
+    public bool _moveToPlayer = false;
 
     #endregion ------------------------------------ Fields ------------------------------------
 
@@ -27,24 +28,16 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_moveEnemy)
-            if (!_escapePlayer) MoveEnemyToPlayer();
-            else MoveEnemyEscapePlayer();
+        if(_moveToPlayer) MoveEnemy();
     }
 
     #endregion ------------------------------------ Mono ------------------------------------
 
     #region --------------------------------------- Methods ------------------------------------
 
-    public void MoveEnemyToPlayer()
+    public void MoveEnemy()
     {
-        _direction = _player.position - this.transform.position;   // Enemy to player direction / escape player
-        _enemyRigidbody.MovePosition((Vector2)this.transform.position + (_direction * _movmentSpeed * Time.deltaTime));
-        SetEnemyDirection();
-    }
-    public void MoveEnemyEscapePlayer()
-    {
-        _direction = -(_player.position - this.transform.position);   // Enemy to player direction / escape player
+        _direction = _player.position - this.transform.position;   // Enemy to player direction
         _enemyRigidbody.MovePosition((Vector2)this.transform.position + (_direction * _movmentSpeed * Time.deltaTime));
         SetEnemyDirection();
     }

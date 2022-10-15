@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 namespace Framework.Custom
 {
@@ -8,23 +7,18 @@ namespace Framework.Custom
 
         #region --------------------------------------- Fields ------------------------------------
 
-        [SerializeField] private Transform _player;
-        [SerializeField] private Vector3 offset;
-        [SerializeField] private float damping;   // The max distance between Camera and desired GameObject
+        public Transform target;
+        public Vector3 offset;
+        public float damping;   // The max distance between Camera and desired GameObject
         private Vector3 velocity = Vector3.zero;
 
         #endregion --------------------------------------- Fields ------------------------------------
 
         #region --------------------------------------- Mono ------------------------------------
 
-        private void Awake()
-        {
-            _player = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-
         void FixedUpdate()
         {
-            Vector3 movepos = _player.position + offset;
+            Vector3 movepos = target.position + offset;
             transform.position = Vector3.SmoothDamp(transform.position, movepos, ref velocity, damping);   // Camera follows desided GameObject
         }
 
