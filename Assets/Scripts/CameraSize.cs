@@ -36,6 +36,7 @@ public class CameraSize : MonoBehaviour
             StartCoroutine(ScaleDOWNCameraSize());
             _scalingCamera = true;
         }
+        //a
     }
 
     #endregion --------------------------------------- Mono ------------------------------------
