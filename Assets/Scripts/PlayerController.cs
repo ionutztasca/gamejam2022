@@ -18,11 +18,17 @@ namespace Framework.Custom
         public Vector2 limitsSize = new Vector2(0.5f, 50);
         private Vector2 movement;
 
+        public Animator playerAnim;
 
         private void Update()
         { 
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+            if(movement.x==0 && movement.y==0)
+            {
+                playerAnim.ResetTrigger("run");
+                playerAnim.SetTrigger("idle");
+            }
         }
 
 
@@ -35,6 +41,9 @@ namespace Framework.Custom
         private void Move()
         {
             rb.velocity = movement * moveSpeed;
+            playerAnim.SetTrigger("run");
+            playerAnim.ResetTrigger("idle");
+
         }
         private void PlayerMovementDirection()
         {
