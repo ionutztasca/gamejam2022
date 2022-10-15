@@ -18,7 +18,13 @@ namespace Framework.Custom
         public Vector2 limitsSize = new Vector2(0.5f, 50);
         private Vector2 movement;
 
+        // Animation
         public Animator playerAnim;
+
+        private void Awake()
+        {
+            playerAnim = this.gameObject.GetComponent<Animator>();
+        }
 
         private void Update()
         { 
