@@ -13,7 +13,7 @@ namespace Framework.Custom
 
     public class FoodLevitate: MonoBehaviour
     {
-        public float amplitude = 0.5f;
+        public float amplitude = 0.15f;
         public float frequency = 1f;
 
         Vector3 posOffset = new Vector3();
