@@ -2,6 +2,7 @@
 //Version: 0.0.1
 //What does this script do?
 
+using System.Collections;
 using UnityEngine;
 
 
@@ -18,6 +19,7 @@ namespace Framework.Custom
         
         public float fatScore = 20f;
         public float health = 100;
+        public float healthDecreaseRate = 1;
         public PlayerController playerController;
         public UIManager uIManager;
        
@@ -33,7 +35,18 @@ namespace Framework.Custom
         private void OnTriggerEnter2D(Collider2D collision)
         {
             CheckFood(collision);
+            CheckEnemy(collision);
+        }
+        private void CheckEnemy(Collider2D collision)
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            if (!enemy) return;
 
+            OnEnemyEnter(enemy);
+        }
+        private void OnEnemyEnter(Enemy enemy)
+        {
+           
         }
         private void CheckFood(Collider2D collision)
         {
@@ -60,6 +73,7 @@ namespace Framework.Custom
         {
             uIManager.UpdateUIFatScore(value);
             UpdatePlayerFat();
+            StartCoroutine(CheckDecreaseHealth());
 
         }
         private void UpdatePlayerFat()
@@ -67,6 +81,7 @@ namespace Framework.Custom
             if(fatScore>0 && fatScore < 20)//Skinny
             {
                 playerBodyType = BodyType.Skinny;
+                
             }else if(fatScore>=20 && fatScore < 40)
             {
                 playerBodyType = BodyType.Normal;
@@ -79,6 +94,25 @@ namespace Framework.Custom
             playerController.UpdatePlayerAppearence();
         }
 
-        
+        private IEnumerator CheckDecreaseHealth()
+        {
+            while(playerBodyType == BodyType.Skinny)
+            {
+                health -= healthDecreaseRate;
+                CheckIfPlayerDead();
+                yield return new WaitForSeconds(1);
+            }
+        }
+        private void CheckIfPlayerDead()
+        {
+            if (health < 0.1f)
+            {
+                KillPlayer();
+            }
+        }
+        private void KillPlayer()
+        {
+            Debug.Log("RAT DIED");
+        }
     }
 }

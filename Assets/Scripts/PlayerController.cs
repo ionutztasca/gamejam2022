@@ -12,10 +12,10 @@ namespace Framework.Custom
     {
         public float moveSpeed = 5;
         public Rigidbody2D rb;
-        public float rotationSpeed = 400;
+        public float rotationSpeed = 1400;
         public PlayerStats playerStats;
-        public Vector2 limitsSpeed = new Vector2(0.1f, 50);
-        public Vector2 limitsSize = new Vector2(0.5f, 50);
+        public Vector2 limitsSpeed = new Vector2(0.1f, 5);
+        public Vector2 limitsSize = new Vector2(0.5f, 8);
         private Vector2 movement;
 
         // Animation
@@ -68,7 +68,7 @@ namespace Framework.Custom
         {
 
             SetPlayerSize(playerStats.fatScore/10f);
-            UpdateSpeed(playerStats.fatScore / 10f);
+            UpdateSpeed(playerStats.fatScore / 100f);
             //switch (bodyType)
             //{
             //    case BodyType.Skinny:
@@ -86,8 +86,7 @@ namespace Framework.Custom
             transform.localScale=new Vector3(Mathf.Clamp(value, limitsSize.x, limitsSize.y), Mathf.Clamp(value, limitsSize.x, limitsSize.y), 0);
         }
         private void UpdateSpeed(float value) {
-            Debug.Log("new speed: " + Mathf.Clamp(moveSpeed / value + 1, limitsSpeed.x, limitsSpeed.y));
-            moveSpeed = Mathf.Clamp(moveSpeed / value+2, limitsSpeed.x, limitsSpeed.y);
+            moveSpeed = Mathf.Clamp(3 - (moveSpeed* value), limitsSpeed.x, limitsSpeed.y);
         
         }
     }

@@ -122,10 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   rb: {fileID: 8170671637236860894}
-  rotationSpeed: 400
+  rotationSpeed: 1400
   playerStats: {fileID: 305279097}
-  limitsSpeed: {x: 0.1, y: 50}
-  limitsSize: {x: 0.5, y: 50}
+  limitsSpeed: {x: 0.1, y: 5}
+  limitsSize: {x: 0.5, y: 10}
   playerAnim: {fileID: 305279096}
 --- !u!114 &305279097
 MonoBehaviour:
