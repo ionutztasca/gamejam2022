@@ -26,12 +26,12 @@ public class CameraSize : MonoBehaviour
 
     private void Update()
     {
-        if ((_camera.orthographicSize < (_player.transform.localScale.x + 1.0f - 0.2f)) && !_scalingCamera)
+        if ((_camera.orthographicSize < (_player.transform.localScale.x + _minCameraSize - 0.2f)) && !_scalingCamera)
         { 
             StartCoroutine(ScaleUPCameraSize());
             _scalingCamera = true;
         }
-        if ((_camera.orthographicSize > (_player.transform.localScale.x + 1.0f + 0.2f)) && !_scalingCamera)
+        if ((_camera.orthographicSize > (_player.transform.localScale.x + _minCameraSize + 0.2f)) && !_scalingCamera)
         {
             StartCoroutine(ScaleDOWNCameraSize());
             _scalingCamera = true;
@@ -46,12 +46,12 @@ public class CameraSize : MonoBehaviour
     private IEnumerator ScaleUPCameraSize()
     {
         yield return new WaitForSecondsRealtime(0.001f);
-        if (_camera.orthographicSize < (_player.transform.localScale.x + 1.0f))
+        if (_camera.orthographicSize < (_player.transform.localScale.x + _minCameraSize))
         {
             _camera.orthographicSize += 0.001f;
             StartCoroutine(ScaleUPCameraSize());
         }
-        if (_camera.orthographicSize <= (_player.transform.localScale.x + 1.0f + 0.5f) && _camera.orthographicSize >= (_player.transform.localScale.x + 1.0f - 0.5f))
+        if (_camera.orthographicSize <= (_player.transform.localScale.x + _minCameraSize + 0.5f) && _camera.orthographicSize >= (_player.transform.localScale.x + _minCameraSize - 0.5f))
         {
             _scalingCamera = false;
             StopAllCoroutines();
@@ -61,12 +61,12 @@ public class CameraSize : MonoBehaviour
     private IEnumerator ScaleDOWNCameraSize()
     {
         yield return new WaitForSecondsRealtime(0.001f);
-        if (_camera.orthographicSize > (_player.transform.localScale.x + 1.0f))
+        if (_camera.orthographicSize > (_player.transform.localScale.x + _minCameraSize))
         {
             _camera.orthographicSize -= 0.001f;
             StartCoroutine(ScaleDOWNCameraSize());
         }
-        if (_camera.orthographicSize <= (_player.transform.localScale.x + 1.0f + 0.5f) && _camera.orthographicSize >= (_player.transform.localScale.x + 1.0f - 0.5f))
+        if (_camera.orthographicSize <= (_player.transform.localScale.x + _minCameraSize + 0.5f) && _camera.orthographicSize >= (_player.transform.localScale.x + _minCameraSize - 0.5f))
         {
             _scalingCamera = false;
             StopAllCoroutines();
