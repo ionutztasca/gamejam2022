@@ -35,7 +35,14 @@ namespace Framework.Custom
         private void OnTriggerEnter2D(Collider2D collision)
         {
             CheckFood(collision);
-            CheckEnemy(collision);
+            //CheckEnemy(collision);
+        }
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if ((collision.gameObject.GetComponent("Enemy") as Enemy) != null)
+            {
+                collision.gameObject.GetComponent<Enemy>().HitPlayer();
+            }
         }
         private void CheckEnemy(Collider2D collision)
         {
@@ -65,7 +72,7 @@ namespace Framework.Custom
             {
                 fatScore = Mathf.Clamp(fatScore + food.value, 0, 9999999999);
             }
-
+            Destroy(food.gameObject);
             UpdateFatInfo(fatScore);
         }
             
@@ -96,7 +103,7 @@ namespace Framework.Custom
 
         private IEnumerator CheckDecreaseHealth()
         {
-            while(playerBodyType == BodyType.Skinny)
+            while(playerBodyType == BodyType.Skinny && health>-1)
             {
                 health -= healthDecreaseRate;
                 CheckIfPlayerDead();
