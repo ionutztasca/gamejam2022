@@ -100,6 +100,8 @@ MonoBehaviour:
   _player: {fileID: 0}
   offset: {x: 0, y: 0, z: -10}
   damping: 0.5
+  min: {fileID: 0}
+  max: {fileID: 0}
 --- !u!114 &2349674891743285070
 MonoBehaviour:
   m_ObjectHideFlags: 0

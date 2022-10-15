@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5669809701917441463, guid: cdddfe84e1df33a459e47a79387fcd81, type: 3}
       propertyPath: healthQuant
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5669809701917441465, guid: cdddfe84e1df33a459e47a79387fcd81, type: 3}
       propertyPath: m_Color.b

@@ -14,6 +14,7 @@ namespace Framework.Custom
     public class Food: MonoBehaviour
     {
         public bool isGoodFood = true;
+        public bool isQuestItem = false;
         public float value = 0;
         public float healthQuant = 0;
     }

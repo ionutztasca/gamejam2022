@@ -15,7 +15,7 @@ namespace Framework.Custom
         public float rotationSpeed = 1400;
         public PlayerStats playerStats;
         public Vector2 limitsSpeed = new Vector2(0.1f, 5);
-        public Vector2 limitsSize = new Vector2(0.5f, 8);
+        public Vector2 limitsSize = new Vector2(0.5f, 6);
         private Vector2 movement;
 
         // Animation

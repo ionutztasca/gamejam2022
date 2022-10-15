@@ -22,7 +22,8 @@ namespace Framework.Custom
         public float healthDecreaseRate = 1;
         public PlayerController playerController;
         public UIManager uIManager;
-       
+
+        public Transform questFood;
         
         public BodyType playerBodyType;
 
@@ -35,18 +36,14 @@ namespace Framework.Custom
         private void OnTriggerEnter2D(Collider2D collision)
         {
             CheckFood(collision);
-            //CheckEnemy(collision);
         }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if ((collision.gameObject.GetComponent("Enemy") as Enemy) != null)
-            {
-                collision.gameObject.GetComponent<Enemy>().HitPlayer();
-            }
+            CheckEnemy(collision);
         }
-        private void CheckEnemy(Collider2D collision)
+        private void CheckEnemy(Collision2D collision)
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
+            Enemy enemy = collision.transform.GetComponent<Enemy>();
             if (!enemy) return;
 
             OnEnemyEnter(enemy);
@@ -72,10 +69,26 @@ namespace Framework.Custom
             {
                 fatScore = Mathf.Clamp(fatScore + food.value, 0, 9999999999);
             }
-            Destroy(food.gameObject);
+            health += food.healthQuant;
+            if (food.isQuestItem)
+            {
+                HandleQuestItem(food);
+            }
+            else
+            {
+                Destroy(food.gameObject);
+            }
+           
             UpdateFatInfo(fatScore);
-        }
             
+        }
+        private void HandleQuestItem(Food food)
+        {
+            questFood = food.transform;
+            questFood.GetComponent<CircleCollider2D>().enabled = false;
+            questFood.GetComponent<FoodLevitate>().enabled = false;
+            questFood.SetParent(transform);
+        }
         private void UpdateFatInfo(float value)
         {
             uIManager.UpdateUIFatScore(value);
