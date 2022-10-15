@@ -15,11 +15,20 @@ namespace Framework.Custom
     {
 
         public  Text fatScore;
-
+        public Text health;
+        public Text missionsLeft;
         
         public void UpdateUIFatScore(float value)
         {
             fatScore.text = "Fat Percentage: "+value.ToString()+"%";
+        }
+        public void UpdateUIHealth(float value)
+        {
+            health.text = "Health: " + value.ToString();
+        }
+        public void UpdateUIMissions(float value)
+        {
+            missionsLeft.text = "Missions status:\n" + value.ToString()+"/3 collected";
         }
     }
 }

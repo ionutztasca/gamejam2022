@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(RandomMovement());
     }
 
@@ -150,9 +151,11 @@ public class Enemy : MonoBehaviour
 
             _enemyAnimator.speed = 2f;
             _enemyAnimator.SetTrigger("attack");
+            Debug.Log("Dealt damage:" + damage + " to: " + _player);
+            _player.GetComponent<PlayerStats>().TakeDamageFromEnemy(damage);
             StartCoroutine(WaitAttackAnim());
-
-            _player.GetComponent<PlayerStats>().health -= damage;
+            
+            
         }
     }
 

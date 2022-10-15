@@ -32,6 +32,7 @@ namespace Framework.Custom
         {
             playerBodyType = BodyType.Normal;
             uIManager.UpdateUIFatScore(fatScore);
+            uIManager.UpdateUIHealth(health);
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -51,6 +52,7 @@ namespace Framework.Custom
         private void OnEnemyEnter(Enemy enemy)
         {
             enemy.HitPlayer();
+
         }
         private void CheckFood(Collider2D collision)
         {
@@ -70,6 +72,7 @@ namespace Framework.Custom
                 fatScore = Mathf.Clamp(fatScore + food.value, 0, 9999999999);
             }
             health += food.healthQuant;
+            uIManager.UpdateUIHealth(health);
             if (food.isQuestItem)
             {
                 HandleQuestItem(food);
@@ -82,12 +85,21 @@ namespace Framework.Custom
             UpdateFatInfo(fatScore);
             
         }
+        public void TakeDamageFromEnemy(float value)
+        {
+            Debug.Log("tookDamage: " + (health - value));
+            health = Mathf.Clamp(health - value, 0, 999999);
+            uIManager.UpdateUIHealth(health);
+            CheckIfPlayerDead();
+
+        }
         private void HandleQuestItem(Food food)
         {
             questFood = food.transform;
             questFood.GetComponent<CircleCollider2D>().enabled = false;
             questFood.GetComponent<FoodLevitate>().enabled = false;
             questFood.SetParent(transform);
+            
         }
         private void UpdateFatInfo(float value)
         {
@@ -119,6 +131,7 @@ namespace Framework.Custom
             while(playerBodyType == BodyType.Skinny && health>-1)
             {
                 health -= healthDecreaseRate;
+                uIManager.UpdateUIHealth(health);
                 CheckIfPlayerDead();
                 yield return new WaitForSeconds(1);
             }

@@ -93,7 +93,7 @@ Transform:
   m_GameObject: {fileID: 5612360272037835524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.6, y: -1.359, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 922286952}
   m_Father: {fileID: 0}
@@ -218,8 +218,8 @@ MonoBehaviour:
   _player: {fileID: 0}
   _direction: {x: 0, y: 0}
   health: 100
-  damage: 20
-  _movementSpeed: 1
+  damage: 10
+  _movementSpeed: 0.5
   _nextHitTime: 1
   _moveEnemy: 0
   _escapePlayer: 0

@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 783613838d90892439e7be074a1c30c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   rotationSpeed: 1400
   playerStats: {fileID: 305279097}
   limitsSpeed: {x: 0.1, y: 5}
-  limitsSize: {x: 0.5, y: 10}
+  limitsSize: {x: 0.5, y: 6}
   playerAnim: {fileID: 305279096}
 --- !u!114 &305279097
 MonoBehaviour:

@@ -17,9 +17,12 @@ namespace Framework.Custom
         public UIManager uIManager;
         public CircleCollider2D colliderPot;
         public ParticleSystem splashParticle;
+        public TimerGlobal timer;
 
         private PlayerStats playerStats;
+        
 
+        private int questsCollected = 0;
 
         private void OnCollisionStay2D(Collision2D collision)
         {
@@ -33,6 +36,8 @@ namespace Framework.Custom
             if (playerStats.questFood != null)
             {
                 StartCoroutine(WaitAndMove(0.1f, playerStats.questFood));
+                AfterQuestItemReceived();
+                StopAllCoroutines();
             }
         }
 
@@ -45,15 +50,29 @@ namespace Framework.Custom
                 target.transform.position = Vector3.Lerp(target.position, transform.position, Time.time - startTime); // lerp from A to B in one second
                 yield return 1; // wait for next frame
             }
-            AfterQuestItemReceived();
-            StopAllCoroutines();
+           
         }
         private void AfterQuestItemReceived()
         {
             Debug.Log("Quest Item received");
             splashParticle.Play();
+            questsCollected++;
+            uIManager.UpdateUIMissions(questsCollected);
+            
             Destroy(playerStats.questFood.gameObject);
+            HandleQuestMissions();
             playerStats.questFood = null;
+        }
+        private void HandleQuestMissions()
+        {
+            if(questsCollected == 3)
+            {
+                questsCollected = 0;
+                playerStats.health += 50;
+                playerStats.fatScore += 20;
+                timer.playTime -= 60;
+                uIManager.UpdateUIMissions(questsCollected);
+            }
         }
     }
 }
