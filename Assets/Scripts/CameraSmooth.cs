@@ -1,28 +1,28 @@
-//Script by Ionut
-//Version: 0.0.1
-//What does this script do?
-
 using UnityEngine;
-
 
 namespace Framework.Custom
 {
-    ///<summary>
-    /// What does this script do?
-    ///</summary>
-
     public class CameraSmooth: MonoBehaviour
     {
+
+        #region --------------------------------------- Fields ------------------------------------
+
         public Transform target;
         public Vector3 offset;
-        public float damping;
-
+        public float damping;   // The max distance between Camera and desired GameObject
         private Vector3 velocity = Vector3.zero;
+
+        #endregion --------------------------------------- Fields ------------------------------------
+
+        #region --------------------------------------- Mono ------------------------------------
 
         void FixedUpdate()
         {
             Vector3 movepos = target.position + offset;
-            transform.position = Vector3.SmoothDamp(transform.position, movepos, ref velocity, damping);
+            transform.position = Vector3.SmoothDamp(transform.position, movepos, ref velocity, damping);   // Camera follows desided GameObject
         }
+
+        #endregion --------------------------------------- Mono ------------------------------------
+
     }
 }
