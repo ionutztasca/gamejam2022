@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 305279097}
   - component: {fileID: 8583843206385133708}
   - component: {fileID: 305279096}
+  - component: {fileID: 2840700809475253075}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -120,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 981f9143500f90f4393d066a58ec2b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 3
   rb: {fileID: 8170671637236860894}
   rotationSpeed: 1400
   playerStats: {fileID: 305279097}
@@ -144,6 +145,7 @@ MonoBehaviour:
   healthDecreaseRate: 1
   playerController: {fileID: 8170671637236860889}
   uIManager: {fileID: 0}
+  questFood: {fileID: 0}
   playerBodyType: 0
 --- !u!61 &8583843206385133708
 BoxCollider2D:
@@ -190,3 +192,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &2840700809475253075
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8170671637236860885}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.019296587, y: -0.24780285}
+  m_Size: {x: 0.3302778, y: 0.70714545}
+  m_Direction: 0

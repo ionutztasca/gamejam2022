@@ -74,8 +74,9 @@ GameObject:
   - component: {fileID: 5612360272037835529}
   - component: {fileID: 5612360272037835535}
   - component: {fileID: 5612360272037835530}
-  - component: {fileID: 4036750160106428778}
   - component: {fileID: 857543224}
+  - component: {fileID: 4036750160106428778}
+  - component: {fileID: 1742276962}
   m_Layer: 0
   m_Name: Enemy_Cat
   m_TagString: Untagged
@@ -138,12 +139,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ee1f215f7059e564992ac78e5beda8cf, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ecb9ee502c760ed458c1d42316709fa8, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.31, y: 0.69}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -183,9 +184,25 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0019144267, y: 0.054634422}
+  m_Offset: {x: 0.0019144118, y: 0.24513555}
   serializedVersion: 2
-  m_Radius: 0.08868916
+  m_Radius: 0.06857407
+--- !u!70 &857543224
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5612360272037835524}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.011844993, y: 0.052388847}
+  m_Size: {x: 0.13291287, y: 0.3094293}
+  m_Direction: 0
 --- !u!114 &4036750160106428778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,25 +220,28 @@ MonoBehaviour:
   health: 100
   damage: 20
   _movementSpeed: 1
-  _nextHitTime: 0.5
+  _nextHitTime: 1
   _moveEnemy: 0
   _escapePlayer: 0
   _nextMovementTime: 2
   _nextTargetDistance: 3
   _errorMargin: 0.5
---- !u!70 &857543224
-CapsuleCollider2D:
+--- !u!95 &1742276962
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5612360272037835524}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.00013720989, y: -0.30188313}
-  m_Size: {x: 0.27006125, y: 0.5574265}
-  m_Direction: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5dd9ff7f018422f49ab742ac67e86cf3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

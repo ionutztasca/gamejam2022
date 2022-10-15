@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     // Stats
     public int health = 100, damage = 10;
-    [SerializeField] private float _movementSpeed = 1f, _nextHitTime = 0.5f;
+    [SerializeField] private float _movementSpeed = 1f, _nextHitTime = 0.25f;
     private bool canHit = true;
 
     #endregion ------------------------------------ Stats ------------------------------------
@@ -37,7 +37,8 @@ public class Enemy : MonoBehaviour
 
     #endregion ----------------------------------- Movement ----------------------------------
 
-    // Need ATTACK ANIMATION
+    // Animations
+    private Animator _enemyAnimator;
 
     #endregion ------------------------------------ Fields ------------------------------------
 
@@ -46,6 +47,8 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         _enemyRigidbody = this.gameObject.GetComponent<Rigidbody2D>();
+
+        _enemyAnimator = this.gameObject.GetComponent<Animator>();
     }
 
     private void Start()
@@ -59,6 +62,8 @@ public class Enemy : MonoBehaviour
         if (_moveEnemy)
             if (!_escapePlayer) MoveEnemyToPlayer();
             else MoveEnemyEscapePlayer();
+        else _enemyAnimator.SetTrigger("idle");
+        _enemyAnimator.speed = 1f;
 
         // Enemy Random Movement
         if ((!_targetPositionXReached || !_targetPositionYReached) && !_moveEnemy)
@@ -80,6 +85,8 @@ public class Enemy : MonoBehaviour
         _direction = _player.position - this.transform.position;   // Enemy to player direction
         _enemyRigidbody.MovePosition((Vector2)this.transform.position + (_direction * _movementSpeed * Time.deltaTime));
         SetEnemyDirection();
+        _enemyAnimator.SetTrigger("run");
+        _enemyAnimator.speed = 1.5f;
     }
 
     public void MoveEnemyEscapePlayer()
@@ -141,17 +148,21 @@ public class Enemy : MonoBehaviour
         {
             canHit = false;
 
-            // HIT ANIMATION HERE
+            _enemyAnimator.speed = 2f;
+            _enemyAnimator.SetTrigger("attack");
+            StartCoroutine(WaitAttackAnim());
 
             _player.GetComponent<PlayerStats>().health -= damage;
-            HitRechargeTime();
         }
     }
 
-    private IEnumerator HitRechargeTime()
+    private IEnumerator WaitAttackAnim()
     {
         yield return new WaitForSecondsRealtime(_nextHitTime);
+        _enemyAnimator.speed = 1f;
         canHit = true;
+        _enemyAnimator.SetTrigger("run");
+
     }
 
     #endregion ------------------------------------ Hit ------------------------------------
