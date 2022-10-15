@@ -133,10 +133,11 @@ public class Enemy : MonoBehaviour
 
     #endregion ------------------------------------ Random Movement ---------------------------------
 
-    #region --------------------------------------- Methods ------------------------------------
+    #region --------------------------------------- Hit ------------------------------------
 
     public void HitPlayer()   // Need ATTACK ANIMATION
     {
+        Debug.Log("Player nearby " + _player.name);
         if (canHit)
         {
             canHit = false;
@@ -144,6 +145,7 @@ public class Enemy : MonoBehaviour
             // HIT ANIMATION HERE
 
             _player.GetComponent<PlayerStats>().health -= damage;
+            Debug.Log("Player hitted " + _player.name);
             HitRechargeTime();
         }
     }
@@ -154,7 +156,7 @@ public class Enemy : MonoBehaviour
         canHit = true;
     }
 
-    #endregion ------------------------------------ Methods ------------------------------------
+    #endregion ------------------------------------ Hit ------------------------------------
 
     #endregion ------------------------------------ Methods ------------------------------------
 
