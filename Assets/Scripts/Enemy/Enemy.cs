@@ -137,7 +137,6 @@ public class Enemy : MonoBehaviour
 
     public void HitPlayer()   // Need ATTACK ANIMATION
     {
-        Debug.Log("Player nearby " + _player.name);
         if (canHit)
         {
             canHit = false;
@@ -145,7 +144,6 @@ public class Enemy : MonoBehaviour
             // HIT ANIMATION HERE
 
             _player.GetComponent<PlayerStats>().health -= damage;
-            Debug.Log("Player hitted " + _player.name);
             HitRechargeTime();
         }
     }
