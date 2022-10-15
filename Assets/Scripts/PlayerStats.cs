@@ -46,7 +46,7 @@ namespace Framework.Custom
         }
         private void OnEnemyEnter(Enemy enemy)
         {
-           
+            enemy.HitPlayer();
         }
         private void CheckFood(Collider2D collision)
         {
