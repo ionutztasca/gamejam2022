@@ -37,6 +37,11 @@ public class PlayerDetector : MonoBehaviour
         if ((collision.gameObject.GetComponent("PlayerController") as PlayerController) != null)
         {
             _enemy.GetComponent<Enemy>()._moveEnemy = false;
+            if (_escapingPlayer) if (_player.transform.localScale.x < _enemy.transform.localScale.x && _player.transform.localScale.y < _enemy.transform.localScale.y)
+                {
+                    _enemy.GetComponent<Enemy>()._escapePlayer = false;
+                    _escapingPlayer = false;
+                }
         }
     }
 
