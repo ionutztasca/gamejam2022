@@ -19,6 +19,7 @@ namespace Framework.Custom
         public Text health;
         public RectTransform healthScale;
         public Text missionsLeft;
+        public Text poopCD;
         
         public void UpdateUIFatScore(float value)
         {
@@ -33,6 +34,10 @@ namespace Framework.Custom
         public void UpdateUIMissions(float value)
         {
             missionsLeft.text = "Missions status:\n" + value.ToString()+"/3 collected";
+        }
+        public void UpdatePoopCDTimer(string value)
+        {
+            poopCD.text = value;
         }
     }
 }

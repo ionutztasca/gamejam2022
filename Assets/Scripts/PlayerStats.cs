@@ -151,7 +151,7 @@ namespace Framework.Custom
         private void KillPlayer()
         {
             Debug.Log("RAT DIED");
-
+            playerController.SetPlayerDead();
             StartCoroutine(RestartGame());
         }
 

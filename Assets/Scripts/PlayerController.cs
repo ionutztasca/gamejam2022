@@ -1,5 +1,6 @@
 
 
+using System.Collections;
 using UnityEngine;
 
 namespace Framework.Custom
@@ -18,7 +19,8 @@ namespace Framework.Custom
         public Vector2 limitsSize = new Vector2(0.5f, 6);
         public GameObject poop;
         private Vector2 movement;
-
+        private bool isAlive = true;
+        private bool canPoop = true;
         // Animation
         public Animator playerAnim;
 
@@ -28,7 +30,8 @@ namespace Framework.Custom
         }
 
         private void Update()
-        { 
+        {
+            if (!isAlive) return;
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
             if(movement.x==0 && movement.y==0)
@@ -39,11 +42,30 @@ namespace Framework.Custom
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Instantiate(poop,transform.GetChild(0).transform.position, Quaternion.identity);
+                if (canPoop)
+                {
+                    Instantiate(poop, transform.GetChild(0).transform.position, Quaternion.identity);
+                    canPoop = false;
+                    if (canPoop == false)
+                    {
+                        StartCoroutine(CooldownPoop());
+                    }
+                }
+                
             }
         }
 
-
+        private IEnumerator CooldownPoop()
+        {
+            playerStats.uIManager.UpdatePoopCDTimer("3");
+            yield return new WaitForSeconds(1);
+            playerStats.uIManager.UpdatePoopCDTimer("2");
+            yield return new WaitForSeconds(1);
+            playerStats.uIManager.UpdatePoopCDTimer("1");
+            yield return new WaitForSeconds(1);
+            playerStats.uIManager.UpdatePoopCDTimer("READY");
+            canPoop = true;
+        }
         private void FixedUpdate()
         {
             Move();
@@ -76,6 +98,14 @@ namespace Framework.Custom
             SetPlayerSize(playerStats.fatScore/10f);
             UpdateSpeed(playerStats.fatScore / 100f);
            
+        }
+        public void SetPlayerDead()
+        {
+            isAlive = false;
+            playerAnim.ResetTrigger("run");
+            playerAnim.ResetTrigger("idle");
+            playerAnim.SetTrigger("dead");
+
         }
         private void SetPlayerSize(float value)
         {

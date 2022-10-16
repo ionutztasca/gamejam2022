@@ -2026,12 +2026,6 @@ MonoBehaviour:
   intervalSpawnTime: {x: 7, y: 14}
   maxItemsPerCollider: 1
   spawnRandom: 1
---- !u!224 &335083745 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5200271083502613961, guid: 67b6b0eb84349f649a7cbe7f7fdc6cf0,
-    type: 3}
-  m_PrefabInstance: {fileID: 4326546309158572476}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &339425599
 GameObject:
   m_ObjectHideFlags: 0
@@ -7866,16 +7860,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4326546308192628510, guid: 67b6b0eb84349f649a7cbe7f7fdc6cf0,
-        type: 3}
-      propertyPath: fatScale
-      value: 
-      objectReference: {fileID: 4326546309158572480}
-    - target: {fileID: 4326546308192628510, guid: 67b6b0eb84349f649a7cbe7f7fdc6cf0,
-        type: 3}
-      propertyPath: healthScale
-      value: 
-      objectReference: {fileID: 335083745}
     - target: {fileID: 4326546308192628513, guid: 67b6b0eb84349f649a7cbe7f7fdc6cf0,
         type: 3}
       propertyPath: m_Name
@@ -7883,12 +7867,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67b6b0eb84349f649a7cbe7f7fdc6cf0, type: 3}
---- !u!224 &4326546309158572480 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4279441529074253464, guid: 67b6b0eb84349f649a7cbe7f7fdc6cf0,
-    type: 3}
-  m_PrefabInstance: {fileID: 4326546309158572476}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4610049547231378487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7985,6 +7963,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8170671637236860888, guid: 0b18b376d4c0a6f4ab31cde84f54cad5,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170671637236860888, guid: 0b18b376d4c0a6f4ab31cde84f54cad5,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170671637236860888, guid: 0b18b376d4c0a6f4ab31cde84f54cad5,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e8ec019f1b54a4b44a053adddf22c681,
+        type: 3}
     - target: {fileID: 8170671637236860890, guid: 0b18b376d4c0a6f4ab31cde84f54cad5,
         type: 3}
       propertyPath: m_RootOrder
@@ -7993,7 +7987,7 @@ PrefabInstance:
     - target: {fileID: 8170671637236860890, guid: 0b18b376d4c0a6f4ab31cde84f54cad5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.74
+      value: -1.33
       objectReference: {fileID: 0}
     - target: {fileID: 8170671637236860890, guid: 0b18b376d4c0a6f4ab31cde84f54cad5,
         type: 3}
