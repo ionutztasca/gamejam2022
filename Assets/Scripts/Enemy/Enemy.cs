@@ -1,5 +1,6 @@
 using Framework.Custom;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -39,6 +40,9 @@ public class Enemy : MonoBehaviour
 
     // Animations
     private Animator _enemyAnimator;
+
+    // Enemy Sounds
+    public List<AudioSource> enemyAudioSource;
 
     #endregion ------------------------------------ Fields ------------------------------------
 
@@ -111,6 +115,7 @@ public class Enemy : MonoBehaviour
     {
         if (_targetPositionXReached && _targetPositionYReached)
         {
+            PlayEnemySound();
             _targetPosition = new Vector3(this.transform.position.x + Random.Range(-_nextTargetDistance, _nextTargetDistance), this.transform.position.y + Random.Range(-_nextTargetDistance, _nextTargetDistance), 0);
             _direction = _targetPosition - this.transform.position;
             _targetPositionXReached = false;
@@ -154,8 +159,7 @@ public class Enemy : MonoBehaviour
             Debug.Log("Dealt damage:" + damage + " to: " + _player);
             _player.GetComponent<PlayerStats>().TakeDamageFromEnemy(damage);
             StartCoroutine(WaitAttackAnim());
-            
-            
+            PlayEnemySound();
         }
     }
 
@@ -169,6 +173,11 @@ public class Enemy : MonoBehaviour
     }
 
     #endregion ------------------------------------ Hit ------------------------------------
+
+    public void PlayEnemySound()
+    {
+        enemyAudioSource[Random.Range(0, enemyAudioSource.Count)].Play();   // 3 random sounds to play
+    }
 
     #endregion ------------------------------------ Methods ------------------------------------
 
