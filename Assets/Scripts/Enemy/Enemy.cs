@@ -14,14 +14,13 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform _player;
     [SerializeField] private Vector2 _direction;
     private Rigidbody2D _enemyRigidbody;
-
     #endregion --------------------------------------- GameObject ------------------------------------
 
     #region --------------------------------------- Stats ------------------------------------
 
     // Stats
     public int health = 100, damage = 10;
-    [SerializeField] private float _movementSpeed = 1f, _nextHitTime = 0.25f;
+    [SerializeField] public float _movementSpeed = 1f, _nextHitTime = 0.25f;
     private bool canHit = true;
 
     #endregion ------------------------------------ Stats ------------------------------------
@@ -58,6 +57,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         _player = GameObject.FindGameObjectWithTag("Player").transform;
+        damage = TimerGlobal.lastMaxDMG;
+        _movementSpeed = TimerGlobal.lastMaxSpeed;
         StartCoroutine(RandomMovement());
     }
 

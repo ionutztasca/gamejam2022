@@ -11,38 +11,23 @@ namespace Framework.Custom
 
     public class PlayerController: MonoBehaviour
     {
-        #region ------------------------------------------- Fields ----------------------------------------
-
-        // Components
-        public Rigidbody2D rb;
-        public PlayerStats playerStats;
-        public GameObject poop;
-
-        // Movement
         public float moveSpeed = 5;
+        public Rigidbody2D rb;
         public float rotationSpeed = 1400;
+        public PlayerStats playerStats;
         public Vector2 limitsSpeed = new Vector2(0.1f, 5);
         public Vector2 limitsSize = new Vector2(0.5f, 6);
+        public GameObject poop;
         private Vector2 movement;
         private bool isAlive = true;
         private bool canPoop = true;
-
         // Animation
         public Animator playerAnim;
-
-        // Sounds
-        private PlayerSounds _playerSoundController;
-
-        #endregion ---------------------------------------- Fields ----------------------------------------
-
-        #region ------------------------------------------- Mono ----------------------------------------
-
+        public PlayerSounds sounds;
 
         private void Awake()
         {
             playerAnim = this.gameObject.GetComponent<Animator>();
-            _playerSoundController = this.gameObject.GetComponent<PlayerSounds>();
-            StartCoroutine(PlayRandomSound());
         }
 
         private void Update()
@@ -61,6 +46,7 @@ namespace Framework.Custom
                 if (canPoop)
                 {
                     Instantiate(poop, transform.GetChild(0).transform.position, Quaternion.identity);
+                    sounds.PlayPoopSound();
                     canPoop = false;
                     if (canPoop == false)
                     {
@@ -70,16 +56,6 @@ namespace Framework.Custom
                 
             }
         }
-
-        private void FixedUpdate()
-        {
-            Move();
-            PlayerMovementDirection();
-        }
-
-        #endregion ---------------------------------------- Mono ----------------------------------------
-
-        #region ---------------------------------------- Methods ----------------------------------------
 
         private IEnumerator CooldownPoop()
         {
@@ -92,15 +68,11 @@ namespace Framework.Custom
             playerStats.uIManager.UpdatePoopCDTimer("READY");
             canPoop = true;
         }
-        
-        private IEnumerator PlayRandomSound()
+        private void FixedUpdate()
         {
-            _playerSoundController.PlayPlayerSound();
-            yield return new WaitForSecondsRealtime(Random.Range(0,6));
-            StartCoroutine(PlayRandomSound());
+            Move();
+            PlayerMovementDirection();
         }
-
-        #region ---------------------------------------- Movement ----------------------------------------
 
         private void Move()
         {
@@ -122,10 +94,6 @@ namespace Framework.Custom
             }
         }
 
-        #endregion ---------------------------------------- Movement ----------------------------------------
-
-        #region ------------------------------------------- Player Stats ----------------------------------------
-
         public void UpdatePlayerAppearence()
         {
 
@@ -139,6 +107,7 @@ namespace Framework.Custom
             playerAnim.ResetTrigger("run");
             playerAnim.ResetTrigger("idle");
             playerAnim.SetTrigger("dead");
+            moveSpeed = 0;
             transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
         }
@@ -150,10 +119,5 @@ namespace Framework.Custom
             moveSpeed = Mathf.Clamp(3 - (moveSpeed* value), limitsSpeed.x, limitsSpeed.y);
         
         }
-
-        #endregion ------------------------------------------- Player Stats ----------------------------------------
-
-        #endregion ---------------------------------------- Methods ----------------------------------------
-
     }
 }

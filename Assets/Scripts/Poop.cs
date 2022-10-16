@@ -15,6 +15,8 @@ namespace Framework.Custom
     public class Poop: MonoBehaviour
     {
         public ParticleSystem explosionps;
+
+        public AudioSource sounds;
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Enemy enemy = collision.transform.GetComponent<Enemy>();
@@ -22,7 +24,7 @@ namespace Framework.Custom
             explosionps.Play();
             Transform enemyTransform = enemy.transform;
             Vector2 direction = new Vector2((float)Random.Range(-1000, 1000), (float)Random.Range(-1000, 1000));
-
+            sounds.Play();
             float force = (float)Random.Range(-1000, 1000);
             enemyTransform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             enemyTransform.GetComponent<Rigidbody2D>().AddForce(direction * force);

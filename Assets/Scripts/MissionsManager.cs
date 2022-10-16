@@ -18,6 +18,7 @@ namespace Framework.Custom
         public CircleCollider2D colliderPot;
         public ParticleSystem splashParticle;
         public TimerGlobal timer;
+        public AudioSource sound;
 
         private PlayerStats playerStats;
         
@@ -56,6 +57,7 @@ namespace Framework.Custom
         {
             Debug.Log("Quest Item received");
             splashParticle.Play();
+            sound.Play();
             questsCollected++;
             uIManager.UpdateUIMissions(questsCollected);
             

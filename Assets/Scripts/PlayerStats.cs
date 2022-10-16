@@ -27,6 +27,8 @@ namespace Framework.Custom
         
         public BodyType playerBodyType;
 
+        public PlayerSounds sounds;
+
         private bool isHealthDecreasing = false;
 
         private void Start()
@@ -40,6 +42,10 @@ namespace Framework.Custom
             CheckFood(collision);
         }
         private void OnCollisionEnter2D(Collision2D collision)
+        {
+            CheckEnemy(collision);
+        }
+        private void OnCollisionStay2D(Collision2D collision)
         {
             CheckEnemy(collision);
         }
@@ -84,6 +90,7 @@ namespace Framework.Custom
             }
            
             UpdateFatInfo(fatScore);
+            sounds.Playmefood();
             
         }
         public void TakeDamageFromEnemy(float value)
@@ -92,6 +99,7 @@ namespace Framework.Custom
             health = Mathf.Clamp(health - value, 0, 999999);
             uIManager.UpdateUIHealth(health);
             CheckIfPlayerDead();
+            sounds.Playmiky();
 
         }
         private void HandleQuestItem(Food food)
@@ -105,6 +113,7 @@ namespace Framework.Custom
         private void UpdateFatInfo(float value)
         {
             uIManager.UpdateUIFatScore(value);
+
             UpdatePlayerFat();
             if(isHealthDecreasing==false)
                 StartCoroutine(CheckDecreaseHealth());
