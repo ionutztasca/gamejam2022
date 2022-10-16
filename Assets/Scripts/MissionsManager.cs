@@ -70,7 +70,6 @@ namespace Framework.Custom
                 questsCollected = 0;
                 playerStats.health += 50;
                 playerStats.fatScore += 20;
-                timer.playTime -= 60;
                 uIManager.UpdateUIMissions(questsCollected);
             }
         }

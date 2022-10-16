@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
         // Enemy/Player Movement
         if (_moveEnemy)
             if (!_escapePlayer) MoveEnemyToPlayer();
-            else MoveEnemyEscapePlayer();
+            //else MoveEnemyEscapePlayer();
         else _enemyAnimator.SetTrigger("idle");
         _enemyAnimator.speed = 1f;
 

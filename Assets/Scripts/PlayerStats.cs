@@ -4,7 +4,7 @@
 
 using System.Collections;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 namespace Framework.Custom
 {
@@ -27,6 +27,7 @@ namespace Framework.Custom
         
         public BodyType playerBodyType;
 
+        private bool isHealthDecreasing = false;
 
         private void Start()
         {
@@ -105,7 +106,8 @@ namespace Framework.Custom
         {
             uIManager.UpdateUIFatScore(value);
             UpdatePlayerFat();
-            StartCoroutine(CheckDecreaseHealth());
+            if(isHealthDecreasing==false)
+                StartCoroutine(CheckDecreaseHealth());
 
         }
         private void UpdatePlayerFat()
@@ -130,11 +132,14 @@ namespace Framework.Custom
         {
             while(playerBodyType == BodyType.Skinny && health>-1)
             {
+                isHealthDecreasing = true;
                 health -= healthDecreaseRate;
                 uIManager.UpdateUIHealth(health);
                 CheckIfPlayerDead();
+
                 yield return new WaitForSeconds(1);
             }
+            isHealthDecreasing = false;
         }
         private void CheckIfPlayerDead()
         {
@@ -146,6 +151,14 @@ namespace Framework.Custom
         private void KillPlayer()
         {
             Debug.Log("RAT DIED");
+
+            StartCoroutine(RestartGame());
+        }
+
+        private IEnumerator RestartGame()
+        {
+            yield return new WaitForSeconds(3);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

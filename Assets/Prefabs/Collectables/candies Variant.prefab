@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6425422207710799457, guid: 6b0962ca80fa1d14781ff68473451aac,
+        type: 3}
+      propertyPath: value
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6425422207710799466, guid: 6b0962ca80fa1d14781ff68473451aac,
         type: 3}
       propertyPath: m_RootOrder
@@ -80,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 6425422207710799467, guid: 6b0962ca80fa1d14781ff68473451aac,
         type: 3}
       propertyPath: m_Name
-      value: candies
+      value: candies Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6425422207710799470, guid: 6b0962ca80fa1d14781ff68473451aac,
         type: 3}

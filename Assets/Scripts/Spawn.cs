@@ -22,7 +22,7 @@ namespace Framework.Custom
         Vector2 cubeCenter;
         public Vector2 intervalSpawnTime = new Vector2(1f, 5f);
         public int maxItemsPerCollider = 10;
-    
+        public bool spawnRandom = false;
 
         private void Start()
         {
@@ -38,10 +38,22 @@ namespace Framework.Custom
             // Multiply by scale because it does affect the size of the collider
             cubeSize.x = cubeTrans.localScale.x * collider.size.x;
             cubeSize.y = cubeTrans.localScale.y * collider.size.y;
-            if (collider.transform.childCount <= maxItemsPerCollider)
+            if (collider.transform.childCount < maxItemsPerCollider)
             {
-                GameObject go = Instantiate(GetRandomPrefab(), GetRandomPosition(), Quaternion.identity);
-                go.transform.SetParent(collider.transform);
+                if (spawnRandom)
+                {
+                    if (Random.Range(0, 1) == 1)
+                    {
+                        GameObject go = Instantiate(GetRandomPrefab(), GetRandomPosition(), Quaternion.identity);
+                        go.transform.SetParent(collider.transform);
+                    }
+                }
+                else
+                {
+                    GameObject go = Instantiate(GetRandomPrefab(), GetRandomPosition(), Quaternion.identity);
+                    go.transform.SetParent(collider.transform);
+                }
+                
             }
             
             yield return new WaitForSeconds(GetSpawnTimeInterval());

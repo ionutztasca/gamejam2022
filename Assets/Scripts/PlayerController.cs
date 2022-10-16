@@ -16,6 +16,7 @@ namespace Framework.Custom
         public PlayerStats playerStats;
         public Vector2 limitsSpeed = new Vector2(0.1f, 5);
         public Vector2 limitsSize = new Vector2(0.5f, 6);
+        public GameObject poop;
         private Vector2 movement;
 
         // Animation
@@ -34,6 +35,11 @@ namespace Framework.Custom
             {
                 playerAnim.ResetTrigger("run");
                 playerAnim.SetTrigger("idle");
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Instantiate(poop,transform.GetChild(0).transform.position, Quaternion.identity);
             }
         }
 
@@ -69,21 +75,11 @@ namespace Framework.Custom
 
             SetPlayerSize(playerStats.fatScore/10f);
             UpdateSpeed(playerStats.fatScore / 100f);
-            //switch (bodyType)
-            //{
-            //    case BodyType.Skinny:
-            //        break;
-            //    case BodyType.Normal:
-            //        break;
-            //    case BodyType.Fat:
-            //        break;
-            //    default:
-            //        break;
-            //}
+           
         }
         private void SetPlayerSize(float value)
         {
-            transform.localScale=new Vector3(Mathf.Clamp(value, limitsSize.x, limitsSize.y), Mathf.Clamp(value, limitsSize.x, limitsSize.y), 0);
+            transform.localScale=new Vector3(Mathf.Clamp(value-1, limitsSize.x, limitsSize.y), Mathf.Clamp(value-1, limitsSize.x, limitsSize.y), 0);
         }
         private void UpdateSpeed(float value) {
             moveSpeed = Mathf.Clamp(3 - (moveSpeed* value), limitsSpeed.x, limitsSpeed.y);

@@ -574,8 +574,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -867, y: 45}
-  m_SizeDelta: {x: 121.3345, y: 77.491}
+  m_AnchoredPosition: {x: -869, y: 45}
+  m_SizeDelta: {x: 312.191, y: 77.491}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &2336193007174512792
 CanvasRenderer:
@@ -618,7 +618,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 120%
+  m_Text: 'Fat: 120%'
 --- !u!1 &4326546308192628513
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,7 +736,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fatScore: {fileID: 6036282462261412605}
+  fatScale: {fileID: 0}
   health: {fileID: 2652835151513498122}
+  healthScale: {fileID: 0}
   missionsLeft: {fileID: 8790476583159766324}
 --- !u!1 &5462794097568208583
 GameObject:
