@@ -42,7 +42,7 @@ namespace Framework.Custom
             {
                 if (spawnRandom)
                 {
-                    if (Random.Range(0, 1) == 1)
+                    if (Random.Range(0, 4) > 1)
                     {
                         GameObject go = Instantiate(GetRandomPrefab(), GetRandomPosition(), Quaternion.identity);
                         go.transform.SetParent(collider.transform);

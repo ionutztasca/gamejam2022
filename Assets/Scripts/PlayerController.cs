@@ -105,6 +105,7 @@ namespace Framework.Custom
             playerAnim.ResetTrigger("run");
             playerAnim.ResetTrigger("idle");
             playerAnim.SetTrigger("dead");
+            transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
         }
         private void SetPlayerSize(float value)
