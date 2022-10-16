@@ -59,8 +59,6 @@ public class SoundController : MonoBehaviour
         playerAudioSource[Random.Range(0, playerAudioSource.Count)].Play();   // 8 random sounds to play
     }
 
-    
-
     public void MuteSound()
     {
         backgroundVolume = 0f;
