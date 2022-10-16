@@ -3437,7 +3437,7 @@ MonoBehaviour:
   - {fileID: 1658419103}
   - {fileID: 661700496}
   - {fileID: 372134963}
-  intervalSpawnTime: {x: 2, y: 5}
+  intervalSpawnTime: {x: 2, y: 4}
   maxItemsPerCollider: 1
   spawnRandom: 0
 --- !u!4 &791009046
@@ -8067,12 +8067,12 @@ PrefabInstance:
     - target: {fileID: 9149627548650831923, guid: c43e948bb92962c499ac4dcfeea3095f,
         type: 3}
       propertyPath: intervalSpawnTime.y
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9149627548650831923, guid: c43e948bb92962c499ac4dcfeea3095f,
         type: 3}
       propertyPath: maxItemsPerCollider
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9149627548650831923, guid: c43e948bb92962c499ac4dcfeea3095f,
         type: 3}
