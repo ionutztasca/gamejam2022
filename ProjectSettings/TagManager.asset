@@ -8,6 +8,7 @@ TagManager:
   - badFood
   - MinutesText
   - SecondsText
+  - LoadingScreen
   layers:
   - Default
   - TransparentFX
@@ -44,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: dumnezeu
+    uniqueID: 3095581091
     locked: 0

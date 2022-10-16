@@ -11,22 +11,38 @@ namespace Framework.Custom
 
     public class PlayerController: MonoBehaviour
     {
-        public float moveSpeed = 5;
+        #region ------------------------------------------- Fields ----------------------------------------
+
+        // Components
         public Rigidbody2D rb;
-        public float rotationSpeed = 1400;
         public PlayerStats playerStats;
+        public GameObject poop;
+
+        // Movement
+        public float moveSpeed = 5;
+        public float rotationSpeed = 1400;
         public Vector2 limitsSpeed = new Vector2(0.1f, 5);
         public Vector2 limitsSize = new Vector2(0.5f, 6);
-        public GameObject poop;
         private Vector2 movement;
         private bool isAlive = true;
         private bool canPoop = true;
+
         // Animation
         public Animator playerAnim;
+
+        // Sounds
+        private PlayerSounds _playerSoundController;
+
+        #endregion ---------------------------------------- Fields ----------------------------------------
+
+        #region ------------------------------------------- Mono ----------------------------------------
+
 
         private void Awake()
         {
             playerAnim = this.gameObject.GetComponent<Animator>();
+            _playerSoundController = this.gameObject.GetComponent<PlayerSounds>();
+            StartCoroutine(PlayRandomSound());
         }
 
         private void Update()
@@ -55,6 +71,16 @@ namespace Framework.Custom
             }
         }
 
+        private void FixedUpdate()
+        {
+            Move();
+            PlayerMovementDirection();
+        }
+
+        #endregion ---------------------------------------- Mono ----------------------------------------
+
+        #region ---------------------------------------- Methods ----------------------------------------
+
         private IEnumerator CooldownPoop()
         {
             playerStats.uIManager.UpdatePoopCDTimer("3");
@@ -66,11 +92,15 @@ namespace Framework.Custom
             playerStats.uIManager.UpdatePoopCDTimer("READY");
             canPoop = true;
         }
-        private void FixedUpdate()
+        
+        private IEnumerator PlayRandomSound()
         {
-            Move();
-            PlayerMovementDirection();
+            _playerSoundController.PlayPlayerSound();
+            yield return new WaitForSecondsRealtime(Random.Range(0,6));
+            StartCoroutine(PlayRandomSound());
         }
+
+        #region ---------------------------------------- Movement ----------------------------------------
 
         private void Move()
         {
@@ -91,6 +121,10 @@ namespace Framework.Custom
                 transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
             }
         }
+
+        #endregion ---------------------------------------- Movement ----------------------------------------
+
+        #region ------------------------------------------- Player Stats ----------------------------------------
 
         public void UpdatePlayerAppearence()
         {
@@ -116,5 +150,10 @@ namespace Framework.Custom
             moveSpeed = Mathf.Clamp(3 - (moveSpeed* value), limitsSpeed.x, limitsSpeed.y);
         
         }
+
+        #endregion ------------------------------------------- Player Stats ----------------------------------------
+
+        #endregion ---------------------------------------- Methods ----------------------------------------
+
     }
 }
